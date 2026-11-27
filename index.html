@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chandresh N | Aspiring Software Developer</title>
+  <meta name="description" content="Portfolio of Chandresh N, an aspiring software developer." />
+  <meta name="theme-color" content="#f7f4ef" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23b0204f'/%3E%3Cstop offset='1' stop-color='%23424be0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 3D cube loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-stage">
+      <div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+
+  <div class="progress" id="progress"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Backgrounds: soft colour wash + live WebGL 3D scene -->
+  <div class="bg" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <span class="grid"></span>
+  </div>
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#home" class="brand" id="brand">
+      <span class="brand-dot"></span><span id="brandName">Chandresh N</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-sm btn-dark nav-cta">Hire me</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" id="heroCopy">
+          <div class="pill reveal" id="availability"><i class="pulse"></i><span></span></div>
+          <p class="hello reveal">Hi, I'm</p>
+          <h1 class="hero-name reveal" id="heroName"></h1>
+          <h2 class="hero-title reveal" id="heroTitle"></h2>
+          <p class="typed-line reveal">
+            <span class="typed-prefix">&lt;/&gt;</span>
+            <span id="typed"></span><span class="caret"></span>
+          </p>
+          <p class="hero-lead reveal" id="heroLead"></p>
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary magnetic">View my work <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="assets/resume.pdf" class="btn btn-ghost magnetic" id="resumeBtn" download>Download resume</a>
+          </div>
+          <div class="socials reveal" id="heroSocials"></div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="photo-stage" id="photoStage">
+            <div class="plate plate-2"></div>
+            <div class="plate plate-1"></div>
+            <div class="orbit-ring"></div>
+            <div class="ring ring-2"></div>
+
+            <div class="photo-layer">
+              <div class="photo-float">
+                <div class="flipper" id="photoFrame" tabindex="0" role="button" aria-label="Flip between illustrated and real photo">
+                  <div class="face front"><img id="photoToon" alt="Illustrated portrait of Chandresh N" /><span class="shine"></span></div>
+                  <div class="face back"><img id="photoReal" alt="Photo of Chandresh N" /><span class="shine"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chip chip-1" style="--z:90px"><b>Fg</b> Figma</div>
+            <div class="chip chip-2" style="--z:130px"><b>JS</b> JavaScript</div>
+            <div class="chip chip-3" style="--z:110px"><b>Py</b> Python</div>
+            <div class="chip chip-4" style="--z:75px"><b>H5</b> HTML &amp; CSS</div>
+            <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+            <p class="photo-hint">Tap the photo to flip</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="stats reveal" id="stats"></div>
+      </div>
+
+      <a href="#about" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" id="marqueeBox" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">01 · About</span>
+          <h2>A developer &amp; designer who <em>builds things</em> that work.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p id="aboutSummary"></p>
+            <p id="aboutSecondary"></p>
+            <div class="tags" id="interests"></div>
+          </div>
+          <div class="about-card reveal" id="aboutCard"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">02 · Skills</span>
+          <h2>My toolbox, <em>sharpened daily.</em></h2>
+        </div>
+        <div class="skills-layout">
+          <div class="sphere-wrap reveal">
+            <div class="sphere" id="sphere" aria-label="Interactive 3D skill sphere" role="img"></div>
+            <p class="sphere-hint">Drag to spin the skill sphere</p>
+          </div>
+          <div class="skills-grid" id="skillsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">03 · Experience</span>
+          <h2>Internships that <em>shaped my craft.</em></h2>
+        </div>
+        <div class="exp-grid" id="expGrid"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">04 · Projects</span>
+          <h2>Things I've <em>built &amp; shipped.</em></h2>
+        </div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="section" id="journey">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">05 · Journey</span>
+          <h2>Education, <em>certifications &amp; activities.</em></h2>
+        </div>
+        <div class="journey-grid">
+          <div>
+            <h3 class="col-title reveal">Education</h3>
+            <div class="timeline" id="timeline"></div>
+            <h3 class="col-title reveal" style="margin-top:2.4rem">Activities</h3>
+            <ul class="activity-list" id="activities"></ul>
+          </div>
+          <div>
+            <h3 class="col-title reveal">Certifications</h3>
+            <div class="certs" id="certs"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal" id="contactCard">
+          <div class="contact-info">
+            <span class="eyebrow light">06 · Contact</span>
+            <h2>Let's build something <em>together.</em></h2>
+            <p id="contactLead"></p>
+            <ul class="contact-list" id="contactList"></ul>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <label>Your name<input type="text" name="name" required placeholder="example name" autocomplete="name" /></label>
+            <label>Your email<input type="email" name="email" required placeholder="example@company.com" autocomplete="email" /></label>
+            <label>Message<textarea name="message" rows="4" required placeholder="Tell me about the opportunity..."></textarea></label>
+            <button type="submit" class="btn btn-primary btn-block magnetic">Send message <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="form-note" id="formNote" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <span id="footerText"></span>
+      <a href="#home" class="to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="scene3d.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
